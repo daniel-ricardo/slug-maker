@@ -1,0 +1,13 @@
+# Configurações privadas
+/private/
+/Connectere/private/
+/Connectere/config/maquinas.js
+/Connectere/config/diesel.js
+
+# Dados operacionais
+*.csv
+*.json
+
+# Editor
+.vscode/
+.idea/

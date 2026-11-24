@@ -4,6 +4,16 @@
 
 Scripts para facilitar e automatizar o trabalho de lançamentos no connectere.
 
+O uso desses scripts no connectere <u><b>não deve ser feito de maneira 100% autônoma</b></u>: um usuário sempre deve supervisionar o lançamento para verificar as informações e executar o código.
+
+Informações sensíveis não são incluídas nos scripts, para não expor a estrutura interna do Connectere e, principalmente, informações que identificam equipamentos e a operação da fazenda.
+
+IDs, códigos e descrições das máquinas ficam fora do git. IDs dos produtos, armazenamento e localização também. Os arquivos com essas informações estão no .gitignore.
+
+O csrfToken é obtido dinamicamento pelo script a cada sessão, e nunca é armazenado.
+
+Os dados de abastecimento são informações operacionais e históricas, e não devem ser armazenados no script. Além disso, para cada uso, esses dados devem ser novos.
+
 ### Título
 
 Por padrão, as páginas do sistema são geradas todas com o mesmo título: "+Gestão - Connectere". Isso dificulta a organização do trabalho com mais de uma guia aberta, e também a navegação pelo histórico de páginas do navegador. Esse script gera títulos de acordo com o caminho da url.
@@ -21,5 +31,7 @@ Uma automação alternativa do lançamento de abastecimentos. Ao carregar a pág
 ## xkcd
 
 Um script que adiciona informações nas páginas de tirinhas xkcd. Minha versão é uma mistura de outros scripts já existentes anteriormente.
+
 Doodles - http://greasyfork.org/users/2240-doodles - https://update.greasyfork.org/scripts/3762/xkcd%20Title%20and%20Explain.user.js
+
 Sem autor atribuído - https://update.greasyfork.org/scripts/3188/XKCD%20tooltip.user.js
