@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          xkcd Date, num, alt text and links
 // @include        http*://store.xkcd.com/collections/everything/products/signed-prints
-// @version       1
+// @version       1.0
 // @description   Adds the date the comic was published, and puts the number on the title, puts the xkcd tooltip under the picture and adds a link to explainxkcd.com. It does the same work with what-if tooltips. Finally, it adds links to the printed comics sold in the store.
 // @icon          http://i.imgur.com/tedLgiQ.png
 // @icon64        http://i.imgur.com/JKCTQ6F.png
