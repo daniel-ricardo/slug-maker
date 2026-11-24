@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         Título no Connectere
 // @namespace    connectere
-// @version      1.0
-// @description  coloca título nas páginas do connectere. Primeira versão em 2026-11-18
+// @version      1.1
+// @description  Coloca título nas páginas do Connectere
 // @author       You
 // @match        *://*.connectere.agr.br/*
 // @icon         https://maisgestao.connectere.agr.br/icon.png
@@ -12,23 +12,35 @@
 (function() {
     'use strict';
 
-    var url = new URL(window.location.href)
+    function atualizarTitulo() {
+        const url = new URL(window.location.href);
 
-    var caminho = url.pathname ;
+        const subd = url.pathname.split('/').filter(Boolean);
 
-    var subd = caminho.split('/');
-    subd.shift();
+        if (subd.length === 0) return;
 
-    subd[0] = subd[0].replace(/[^A-Za-z]/g, ' ') ;
-    let titulo = subd[0];
+        subd[0] = subd[0].replace(/[^A-Za-z]/g, ' ');
 
-    if (url.searchParams.get("page") !== null){ // BUG: não está funcionando
-        titulo += ' pagina ' + url.searchParams.get("page");
+        let titulo = subd.join(' - ');
+
+        if (url.searchParams.has('page')) {
+            titulo += ' - pagina ' + url.searchParams.get('page');
+        }
+
+        titulo = titulo.charAt(0).toUpperCase() + titulo.slice(1);
+
+        if (titulo !== '') {
+            document.title = titulo;
+        }
     }
-    if (subd.length > 1){
-        titulo = subd.join(' - ');
-    }
 
-    const capitalized = titulo.charAt(0).toUpperCase() + titulo.slice(1);
-    if (capitalized !== "") {document.title = capitalized;}
+    // Primeira execução
+    atualizarTitulo();
+
+    // Navegação pelo Turbo
+    document.addEventListener('turbo:load', atualizarTitulo);
+
+    // Navegação pelo histórico do navegador
+    window.addEventListener('popstate', atualizarTitulo);
+
 })();
