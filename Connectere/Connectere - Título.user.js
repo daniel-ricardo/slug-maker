@@ -14,24 +14,25 @@
 
     function atualizarTitulo() {
         const url = new URL(window.location.href);
+        const segmentos = url.pathname.split('/').filter(Boolean);
 
-        const subd = url.pathname.split('/').filter(Boolean);
+        // Verifica se existe algum segmento no caminho
+        if (segmentos.length === 0) return;
 
-        if (subd.length === 0) return;
+        // Remove caracteres não alfabéticos do primeiro segmento
+        segmentos[0] = segmentos[0].replace(/[^A-Za-z]/g, ' ');
 
-        subd[0] = subd[0].replace(/[^A-Za-z]/g, ' ');
+        let titulo = segmentos.join(' - ');
 
-        let titulo = subd.join(' - ');
-
+        // Se estiver paginando, acrescenta o número da página
         if (url.searchParams.has('page')) {
             titulo += ' - pagina ' + url.searchParams.get('page');
         }
 
+        // Capitaliza a primeira letra
         titulo = titulo.charAt(0).toUpperCase() + titulo.slice(1);
 
-        if (titulo !== '') {
-            document.title = titulo;
-        }
+        document.title = titulo;
     }
 
     // Primeira execução
